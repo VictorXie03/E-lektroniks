@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ShopContext } from "../../context/shop-context";
 import { PRODUCTS } from "../../products";
 import { CartItem } from "./cart-item";
 import { useNavigate } from "react-router-dom";
+import ShareButton from './ShareButton';
+import { v4 as uuidv4 } from 'uuid';
+
 
 import "./cart.css";
 export const Cart = () => {
@@ -10,6 +13,22 @@ export const Cart = () => {
   const totalAmount = getTotalCartAmount();
 
   const navigate = useNavigate();
+  const [isCartShared, setCartShared] = useState(false);
+  const [shareableLink, setShareableLink] = useState('');
+  const generateShareableLink = () => {
+    // Using uuid to generate a unique identifier
+    return `https://your-ecommerce-site.com/shared-cart/${uuidv4()}`;
+  };
+
+  const handleShareClick = () => {
+    // Generate a unique link or identifier for the shared cart
+    const generatedLink = generateShareableLink(); // Implement this function
+
+    // Update state
+    setCartShared(true);
+    setShareableLink(generatedLink);
+  };
+
 
   return (
     <div className="cart">
@@ -36,9 +55,23 @@ export const Cart = () => {
             {" "}
             Checkout{" "}
           </button>
+          <div>
+            {/* Render your cart items here */}
+
+            {isCartShared ? (
+              <div>
+                <p>Your cart is shared! Share this link:</p>
+                <p>{shareableLink}</p>
+              </div>
+            ) : (
+              <ShareButton onClick={handleShareClick} />
+            )}
+          </div>
         </div>
+
       ) : (
         <h1> Your Shopping Cart is Empty</h1>
+
       )}
     </div>
   );

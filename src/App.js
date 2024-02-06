@@ -6,6 +6,7 @@ import { Contact } from "./pages/contact";
 import { Cart } from "./pages/cart/cart";
 import { Checkout } from "./pages/cart/checkout";
 import { ShopContextProvider } from "./context/shop-context";
+import SharedCartPage from "./pages/cart/SharedCartPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/shared-cart/:sharedCartId" element={<SharedCartPage />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </Router>
