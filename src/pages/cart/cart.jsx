@@ -17,7 +17,7 @@ export const Cart = () => {
   const [shareableLink, setShareableLink] = useState('');
   const generateShareableLink = () => {
     // Using uuid to generate a unique identifier
-    return `https://your-ecommerce-site.com/shared-cart/${uuidv4()}`;
+    return `https://e-lektroniks.netlify.app//shared-cart/${uuidv4()}`;
   };
 
   const handleShareClick = () => {
